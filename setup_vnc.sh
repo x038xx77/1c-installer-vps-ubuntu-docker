@@ -1,21 +1,10 @@
-# 1c-installer-vps-ubuntu
-### docker-compose up --build
-
-
-RDP
-Создайте файл скрипта:
-Откройте терминал и создайте новый файл, например, setup_vnc.sh:
-nano setup_vnc.sh
-
-
-​
-Вставьте следующий код в файл:
 #!/bin/bash
 
 # Установка XFCE и VNC-сервера
 sudo apt update
 sudo apt install -y xfce4 xfce4-goodies
 sudo apt install -y tightvncserver autocutsel
+sudo apt install -y firefox
 
 # Добавление нового пользователя
 USERNAME="usr1cv8"
@@ -83,14 +72,3 @@ EOF'
 fi
 
 echo "Настройка завершена."
-
-​
-Сохраните файл: Нажмите CTRL + X, затем Y, и нажмите Enter, чтобы сохранить изменения.
-Сделайте скрипт исполняемым:
-chmod +x setup_vnc.sh
-
-
-​
-Запустите скрипт:
-./setup_vnc.sh
-
