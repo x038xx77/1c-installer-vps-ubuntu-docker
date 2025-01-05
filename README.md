@@ -1,5 +1,5 @@
 # 1c-installer-vps-ubuntu
-### docker-compose up --build
+### sudo docker compose up --build
 
 
 RDP
