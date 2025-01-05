@@ -1,0 +1,13 @@
+services:
+  onec:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5343:80"
+    volumes:
+      - ./installer:/1c-dist-installer
+      - /mnt/yandexDisk:/mnt/yandexDisk
+      - /mnt/mailRuDisk:/mnt/mailRuDisk
+      - .env:/env/.env
+    tty: true
