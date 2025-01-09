@@ -10,8 +10,8 @@ if [ -f .env ]; then
 fi
 
 # Создаем группу и пользователя
-groupadd --gid 1020 "$USERNAME_RDP"
-useradd --shell /bin/bash --uid 1020 --gid 1020 --password "$(openssl passwd -1 "$PASSWORD_RDP")" --create-home --home-dir "/home/$USERNAME_RDP" "$USERNAME_RDP"
+#groupadd --gid 1020 "$USERNAME_RDP"
+useradd --shell /bin/bash --uid 1020 --gid www-data --password "$(openssl passwd -1 "$PASSWORD_RDP")" --create-home --home-dir "/home/$USERNAME_RDP" "$USERNAME_RDP"
 usermod -aG sudo "$USERNAME_RDP"
 
 # Создаем папку для монтирования

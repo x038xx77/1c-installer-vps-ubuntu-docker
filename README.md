@@ -1,4 +1,17 @@
 # 1c-installer-vps-ubuntu
+VPS
+генерация пароля 
+openssl passwd -6
+
+создаем пользователя и добавляем сразу в группу www-data 
+
+sudo useradd --shell /bin/bash --create-home --uid 1020 --gid www-data --password '$6$i1AoXUe2q0USZHaj$RNuOuxxjOwXz1ZkmmD9MSMRfm9dp8JM.pNGZPbYX/4Q4be9e.iYH/W.djfKVH8PqsnX9sjIjk.23A/iIQ1V8U1' usr1cv8
+
+
+sudo usermod -aG sudo usr1cv8
+
+
+id usr1cv8 получаем uid=1002(usr1cv8) gid=1004(usr1cv8) groups=1004(usr1cv8)
 
 chmod +x entrypoint.sh
 HOSTNAME=$(hostname) sudo docker compose up --build
