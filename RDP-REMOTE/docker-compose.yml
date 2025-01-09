@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  xrdp:
+    #user: "usr1cv8"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        TAG: latest
+        USERNAME_RDP: ${USERNAME_RDP}
+        PASSWORD_RDP: ${PASSWORD_RDP}
+        
+    container_name: xrdp_container
+    hostname: "${HOSTNAME}"  # Подставится значение из .env
+    environment:
+      - USERNAME_RDP=${USERNAME_RDP}  # Использует переменную из .env
+      - PASSWORD_RDP=${PASSWORD_RDP}  # Использует переменную из .env
+      - WEBDAV_URL_YANDEX=${WEBDAV_URL_YANDEX}  # Подключение к WebDAV из .env
+      - YANDEX_LOGIN=${YANDEX_LOGIN}
+      - YANDEX_PASSWORD=${YANDEX_PASSWORD}
+      - MAILRU_LOGIN=${MAILRU_LOGIN}
+      - MAILRU_PASSWORD=${MAILRU_PASSWORD}
+    ports:
+      - "3389:3389"
+    volumes:
+      - ./entrypoint.sh:/usr/bin/entrypoint:ro
+      - ./data:/data
+      - /mnt/yandexDisk:/mnt/yandexDisk:rw  # Монтирование папки WebDAV
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    restart: always
+    entrypoint: ["/bin/bash", "-c", "/usr/bin/entrypoint"]
+

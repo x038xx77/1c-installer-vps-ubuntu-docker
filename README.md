@@ -1,4 +1,8 @@
 # 1c-installer-vps-ubuntu
+
+chmod +x entrypoint.sh
+HOSTNAME=$(hostname) sudo docker compose up --build
+
 ### sudo docker compose up --build
 
 

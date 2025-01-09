@@ -10,11 +10,13 @@ sudo apt install -y firefox
 USERNAME="usr1cv8"
 sudo useradd -m -s /bin/bash $USERNAME
 sudo usermod -aG sudo $USERNAME
-echo "Установите пароль для пользователя $USERNAME:"
-sudo passwd $USERNAME
+
+# Установка пароля для пользователя, если передан пароль в переменной окружения
+echo -e "$PAS_SETUP_VNS\n$PAS_SETUP_VNS" | sudo passwd $USERNAME
 
 # Настройка VNC для нового пользователя
-sudo -u $USERNAME vncpasswd
+echo -e "$PAS_SETUP_VNS\n$PAS_SETUP_VNS" | sudo -u $USERNAME vncpasswd -f > /home/$USERNAME/.vnc/passwd
+sudo chmod 600 /home/$USERNAME/.vnc/passwd
 
 # Создание xstartup файла
 sudo -u $USERNAME bash -c 'cat <<EOF > ~/.vnc/xstartup
