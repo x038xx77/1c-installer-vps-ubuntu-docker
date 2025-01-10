@@ -106,8 +106,8 @@ fi
 echo "Публикация 1C..."
 sudo usermod -aG davfs2 usr1cv8
 sudo usermod -aG www-data usr1cv8
-sudo /opt/1cv8/x86_64/8.3.25.1445/webinst -publish -apache24 -wsdir InfoBase2 -dir /mnt/yandexDisk/1C-BASES/base -connstr "File=/mnt/yandexDisk/1C-BASES/base;" -confpath /etc/apache2/apache2.conf
-sudo chmod -R 755 "$MOUNT_DIR_YANDEX"/lost+found 2>/dev/null || true
+# sudo /opt/1cv8/x86_64/8.3.25.1445/webinst -publish -apache24 -wsdir InfoBase2 -dir /mnt/yandexDisk/1C-BASES/base -connstr "File=/mnt/yandexDisk/1C-BASES/base;" -confpath /etc/apache2/apache2.conf
+# sudo chmod -R 755 "$MOUNT_DIR_YANDEX"/lost+found 2>/dev/null || true
 
 echo "Перезапуск Apache2..."
 service apache2 restart

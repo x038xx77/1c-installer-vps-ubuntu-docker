@@ -33,6 +33,7 @@ RUN echo ttf-mscorefonts-installer msttcorefonts/eula select true | debconf-set-
 RUN apt-get update \
     && DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends \
         dbus-x11 \
+        evince \
         policykit-1 \
         zenity \
         x11-utils \
@@ -113,8 +114,7 @@ COPY ${INSTALLER_PATH} /opt/1cDist/installer.zip
 RUN unzip /opt/1cDist/installer.zip -d /opt/1cDist/ && rm /opt/1cDist/installer.zip
 
 # Выполняем установку 1С
-RUN /opt/1cDist/setup-full-${ONEC_VERSION}-x86_64.run --mode unattended --enable-components server,ws
-
+RUN /opt/1cDist/setup-full-${ONEC_VERSION}-x86_64.run --mode unattended --enable-components server,client_full,ws,server_admin,liberica_jre,ru
 # Копируем дополнительные скрипты
 
 ARG USERNAME_RDP
