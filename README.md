@@ -1,5 +1,5 @@
 # 1c-installer-vps-ubuntu
-VPS
+VPS#
 генерация пароля 
 openssl passwd -6
 
