@@ -2,35 +2,49 @@ version: '3.8'
 
 services:
   xrdp:
-    #user: "usr1cv8"
+   
     build:
       context: .
       dockerfile: Dockerfile
+      
       args:
-        TAG: latest
+        TAG: ${UBUNTU_TAG}
+        HOSTNAME: ${HOSTNAME}
+        INSTALLER_PATH: ${INSTALLER_PATH}
+        ONEC_VERSION: ${ONEC_VERSION}
         USERNAME_RDP: ${USERNAME_RDP}
         PASSWORD_RDP: ${PASSWORD_RDP}
+        MOUNT_DIR_YANDEX: ${MOUNT_DIR_YANDEX}
+        YANDEX_LOGIN: ${YANDEX_LOGIN}
+        YANDEX_PASSWORD: ${YANDEX_PASSWORD}
+        MAILRU_LOGIN: ${MAILRU_LOGIN}
+        MAILRU_PASSWORD: ${MAILRU_PASSWORD}
         
     container_name: xrdp_container
-    hostname: "${HOSTNAME}"  # Подставится значение из .env
+    hostname: "${HOSTNAME}"
     environment:
-      - USERNAME_RDP=${USERNAME_RDP}  # Использует переменную из .env
-      - PASSWORD_RDP=${PASSWORD_RDP}  # Использует переменную из .env
-      - WEBDAV_URL_YANDEX=${WEBDAV_URL_YANDEX}  # Подключение к WebDAV из .env
+      - USERNAME_RDP=${USERNAME_RDP}
+      - PASSWORD_RDP=${PASSWORD_RDP}
+      - WEBDAV_URL_YANDEX=${WEBDAV_URL_YANDEX}
+      - MOUNT_DIR_YANDEX=${MOUNT_DIR_YANDEX}
       - YANDEX_LOGIN=${YANDEX_LOGIN}
       - YANDEX_PASSWORD=${YANDEX_PASSWORD}
       - MAILRU_LOGIN=${MAILRU_LOGIN}
       - MAILRU_PASSWORD=${MAILRU_PASSWORD}
     ports:
+      - "5343:80"
+      - "5901:5901"
       - "3389:3389"
     volumes:
+      - ./installer:/1c-dist-installer
       - ./entrypoint.sh:/usr/bin/entrypoint:ro
       - ./data:/data
-      - /mnt/yandexDisk:/mnt/yandexDisk:rw  # Монтирование папки WebDAV
+      - /mnt/yandexDisk:/mnt/yandexDisk:rw
+      - /mnt/mailRuDisk:/mnt/mailRuDisk:rw
     env_file:
       - .env
     stdin_open: true
+    privileged: true
     tty: true
     restart: always
-    entrypoint: ["/bin/bash", "-c", "/usr/bin/entrypoint"]
 

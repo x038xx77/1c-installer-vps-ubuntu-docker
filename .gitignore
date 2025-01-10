@@ -1,3 +1,4 @@
 .env
+/RDP-REMOTE/1c-dist-installer/*
 /1c-dist-installer/*
 !/1c-dist-installer/.gitkeep

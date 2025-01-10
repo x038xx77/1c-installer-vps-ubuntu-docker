@@ -16,6 +16,9 @@ id usr1cv8 получаем uid=1002(usr1cv8) gid=1004(usr1cv8) groups=1004(usr1
 chmod +x entrypoint.sh
 HOSTNAME=$(hostname) sudo docker compose up --build
 
+
+ВОЗМОЖНО нужно запускать от пользователя
+sudo su usr1cv8
 ### sudo docker compose up --build
 
 
