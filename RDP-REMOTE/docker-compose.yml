@@ -5,7 +5,7 @@ services:
    
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.ubuntu
       
       args:
         TAG: ${UBUNTU_TAG}
