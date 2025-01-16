@@ -1,0 +1,23 @@
+
+version: '3.8'  # Указываем версию Docker Compose
+
+services:
+
+  caddy:
+    container_name: caddy
+    image: caddy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./main-site/dist:/srv
+      - caddy_data:/data  
+      - caddy_config:/config
+    # networks:
+    #   - publikator_network  # Подключаем к сети
+
+volumes:
+  caddy_data:
+  caddy_config:

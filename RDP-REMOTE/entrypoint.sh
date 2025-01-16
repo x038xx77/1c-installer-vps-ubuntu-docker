@@ -47,6 +47,9 @@ fi
 
 # Назначаем пользователя в нужные группы
 usermod -aG sudo,www-data,xrdp "$USERNAME_RDP"
+mkdir -p /var/1C/licenses
+usermod -aG sudo,www-data,xrdp /var/1C/licenses
+
 
 # Убедимся, что у пользователя есть необходимые права
 chown -R "$USERNAME_RDP":xrdp "/home/$USERNAME_RDP"

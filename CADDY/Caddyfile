@@ -1,0 +1,3 @@
+ets38rdp.devart-1c.ru {
+reverse_proxy 176.123.161.224:5343
+}

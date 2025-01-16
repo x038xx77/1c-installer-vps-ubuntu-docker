@@ -41,6 +41,7 @@ services:
       - ./data:/data
       - /mnt/yandexDisk:/mnt/yandexDisk:rw
       - /mnt/mailRuDisk:/mnt/mailRuDisk:rw
+      - /var/1C/licenses:/var/1C/licenses
     env_file:
       - .env
     stdin_open: true
